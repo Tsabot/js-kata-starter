@@ -1,20 +1,24 @@
 export enum Player {
-  One,
-  Two,
+  One = 'One',
+  Two = 'Two',
 }
 
 export interface Game {
-  [Player.One]: number
-  [Player.Two]: number
+  One: number;
+  Two: number;
+  IsGameOver: boolean;
 }
 
 export const initGame = (): Game => {
   return {
-    [Player.One]: 0,
-    [Player.Two]: 0,
+    One: 0,
+    Two: 0,
+    IsGameOver: false,
   };
 }
 
 export const incrementScore = (game: Game, player: Player): Game => {
-  return {...game, [player]: game[player] + 1}
+  const IsGameOver = game[player] === 3;
+  
+  return {...game, [player]: game[player] + 1, IsGameOver}
 }
